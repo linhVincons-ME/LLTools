@@ -108,16 +108,33 @@ d:/LLTools/
 
 ---
 
-## ⚡ Hướng Dẫn Khởi Chạy Nhanh
+## ⚡ Hướng Dẫn Cài Đặt & Khởi Chạy Desktop Application
 
-### Cách 1: Click đúp 1-Click (Dành cho Windows)
-- Click đúp vào file **`run.bat`** (hoặc chạy `./run.ps1` trong PowerShell).
-- Trình duyệt sẽ tự động mở trang web tại: **`http://localhost:8000`**.
+### 1. Cài đặt toàn bộ thư viện vào môi trường ảo (.venv)
+Mọi thư viện cần thiết đã được khai báo đầy đủ trong `requirements.txt`.
 
-### Cách 2: Khởi chạy bằng dòng lệnh
 ```powershell
+# Di chuyển vào thư mục dự án
 cd d:\LLTools
+
+# Tạo môi trường ảo .venv (nếu chưa có)
+python -m venv .venv
+
+# Kích hoạt và cài đặt tất cả thư viện từ requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+### 2. Khởi chạy Ứng Dụng Desktop 1-Click (Khuyên Dùng)
+* Chỉ cần **click đúp vào tệp `run.bat`** (hoặc chạy `./run.ps1` trong PowerShell).
+* Script sẽ tự động kiểm tra môi trường `.venv`, đồng bộ dependencies nếu thiếu và mở ngay **cửa sổ ứng dụng Desktop LLTools** riêng biệt trên máy tính của bạn!
+
+### 3. Tùy chọn khởi chạy qua dòng lệnh
+```powershell
+# Chạy ở chế độ Desktop Application Window (mặc định)
 .\.venv\Scripts\python.exe main.py
+
+# Hoặc nếu muốn chạy ở chế độ Web Browser thông thường
+.\.venv\Scripts\python.exe main.py --web
 ```
 
 ---
@@ -126,6 +143,6 @@ cd d:\LLTools
 
 ```bash
 git add .
-git commit -m "feat: add comprehensive 4-skills mastery suite (listening, speaking, reading, writing)"
+git commit -m "feat: convert to desktop application running on venv with pywebview and responsive UI"
 git push -u origin main
 ```

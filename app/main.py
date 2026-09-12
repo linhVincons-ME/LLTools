@@ -324,31 +324,77 @@ def serve_index():
     return FileResponse(str(index_path))
 
 
-def open_browser_delayed(url: str, delay: float = 1.2):
-    def _open():
-        webbrowser.open(url)
-    t = threading.Timer(delay, _open)
-    t.daemon = True
-    t.start()
+import time
+import urllib.request
+
+
+def run_server(host: str, port: int):
+    """Run uvicorn server in a separate thread."""
+    uvicorn.run("app.main:app", host=host, port=port, log_level="warning")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Khởi chạy ứng dụng LLTools")
+    parser = argparse.ArgumentParser(description="Khởi chạy ứng dụng LLTools Desktop Application")
     parser.add_argument("--host", default=HOST, help="Host để bind web server")
     parser.add_argument("--port", type=int, default=PORT, help="Cổng chạy web server")
-    parser.add_argument("--no-browser", action="store_true", help="Không tự động mở trình duyệt")
+    parser.add_argument("--web", action="store_true", help="Chạy ở chế độ trình duyệt Web thay vì Desktop App")
+    parser.add_argument("--no-browser", action="store_true", help="Không tự động mở trình duyệt (chỉ dùng với --web)")
     args = parser.parse_args()
 
     url = f"http://{args.host}:{args.port}"
     print("=" * 60)
-    print(f"🚀 LLTools English Learning Suite đang khởi chạy...")
-    print(f"🌐 Truy cập ứng dụng tại: {url}")
+    print("🚀 LLTools - English Learning & 4-Skills Suite")
+    print(f"🌐 Backend Service: {url}")
     print("=" * 60)
 
-    if not args.no_browser:
-        open_browser_delayed(url)
+    if args.web:
+        # Standard web browser mode
+        if not args.no_browser:
+            open_browser_delayed(url)
+        uvicorn.run("app.main:app", host=args.host, port=args.port, reload=False)
+        return
 
-    uvicorn.run("app.main:app", host=args.host, port=args.port, reload=False)
+    # Start FastAPI server in a background daemon thread
+    server_thread = threading.Thread(target=run_server, args=(args.host, args.port), daemon=True)
+    server_thread.start()
+
+    # Wait for server to become responsive
+    max_wait = 8.0
+    start_time = time.time()
+    server_ready = False
+    while time.time() - start_time < max_wait:
+        try:
+            with urllib.request.urlopen(f"{url}/api/stats", timeout=1) as resp:
+                if resp.status == 200:
+                    server_ready = True
+                    break
+        except Exception:
+            time.sleep(0.3)
+
+    if not server_ready:
+        print("⚠️ Không thể kết nối tới backend, chuyển sang mở trình duyệt...")
+        webbrowser.open(url)
+        return
+
+    # Launch native Desktop Window with pywebview
+    try:
+        import webview
+        print("🖥️ Đang mở cửa sổ ứng dụng Desktop LLTools...")
+        window = webview.create_window(
+            title="LLTools - English Learning & 4-Skills Mastery Suite",
+            url=url,
+            width=1340,
+            height=890,
+            min_size=(960, 640),
+            text_select=True,
+            confirm_close=False
+        )
+        webview.start(debug=False)
+        print("👋 Ứng dụng LLTools Desktop đã đóng.")
+    except Exception as err:
+        print(f"⚠️ Không thể khởi tạo pywebview ({err}), chuyển sang mở trình duyệt mặc định...")
+        webbrowser.open(url)
+        server_thread.join()
 
 
 if __name__ == "__main__":
