@@ -127,6 +127,118 @@ def init_db():
                             q["correct_answer"], q["explanation_vi"], q["rule_summary"]
                         ))
 
+        # --- 4 Skills Tables ---
+        # Dictation Exercises Table
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS dictation_exercises (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                difficulty TEXT DEFAULT 'Intermediate',
+                category TEXT DEFAULT 'Daily Life',
+                transcript TEXT NOT NULL,
+                hint_vi TEXT
+            )
+        """)
+
+        # Shadowing Exercises Table
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS shadowing_exercises (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                text TEXT NOT NULL,
+                ipa TEXT,
+                meaning_vi TEXT,
+                category TEXT DEFAULT 'Daily Talk',
+                difficulty TEXT DEFAULT 'B1',
+                intonation_tip TEXT
+            )
+        """)
+
+        # Reading Articles Table
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS reading_articles (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title_en TEXT NOT NULL,
+                title_vi TEXT NOT NULL,
+                level TEXT DEFAULT 'B1',
+                category TEXT DEFAULT 'General',
+                read_time_minutes INTEGER DEFAULT 3,
+                paragraphs_en TEXT,
+                paragraphs_vi TEXT,
+                vocabulary_glossary TEXT,
+                comprehension_questions TEXT
+            )
+        """)
+
+        # Writing Prompts Table
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS writing_prompts (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                category TEXT DEFAULT 'Business Email',
+                prompt_description TEXT,
+                starter_template TEXT,
+                key_phrases TEXT,
+                min_words INTEGER DEFAULT 40
+            )
+        """)
+
+        conn.commit()
+
+        # Seed 4 skills data if empty
+        seed_skills_file = DATA_DIR / "seed_skills_data.json"
+        if seed_skills_file.exists():
+            with open(seed_skills_file, "r", encoding="utf-8") as f:
+                skills_data = json.load(f)
+
+                # Seed Dictation
+                cursor.execute("SELECT COUNT(*) as cnt FROM dictation_exercises")
+                if cursor.fetchone()["cnt"] == 0:
+                    for d in skills_data.get("dictation_exercises", []):
+                        cursor.execute("""
+                            INSERT INTO dictation_exercises (title, difficulty, category, transcript, hint_vi)
+                            VALUES (?, ?, ?, ?, ?)
+                        """, (d["title"], d["difficulty"], d["category"], d["transcript"], d["hint_vi"]))
+
+                # Seed Shadowing
+                cursor.execute("SELECT COUNT(*) as cnt FROM shadowing_exercises")
+                if cursor.fetchone()["cnt"] == 0:
+                    for s in skills_data.get("shadowing_exercises", []):
+                        cursor.execute("""
+                            INSERT INTO shadowing_exercises (text, ipa, meaning_vi, category, difficulty, intonation_tip)
+                            VALUES (?, ?, ?, ?, ?, ?)
+                        """, (s["text"], s["ipa"], s["meaning_vi"], s["category"], s["difficulty"], s["intonation_tip"]))
+
+                # Seed Reading Articles
+                cursor.execute("SELECT COUNT(*) as cnt FROM reading_articles")
+                if cursor.fetchone()["cnt"] == 0:
+                    for a in skills_data.get("reading_articles", []):
+                        cursor.execute("""
+                            INSERT INTO reading_articles (
+                                title_en, title_vi, level, category, read_time_minutes,
+                                paragraphs_en, paragraphs_vi, vocabulary_glossary, comprehension_questions
+                            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """, (
+                            a["title_en"], a["title_vi"], a["level"], a["category"], a["read_time_minutes"],
+                            json.dumps(a["paragraphs_en"], ensure_ascii=False),
+                            json.dumps(a["paragraphs_vi"], ensure_ascii=False),
+                            json.dumps(a["vocabulary_glossary"], ensure_ascii=False),
+                            json.dumps(a["comprehension_questions"], ensure_ascii=False)
+                        ))
+
+                # Seed Writing Prompts
+                cursor.execute("SELECT COUNT(*) as cnt FROM writing_prompts")
+                if cursor.fetchone()["cnt"] == 0:
+                    for w in skills_data.get("writing_prompts", []):
+                        cursor.execute("""
+                            INSERT INTO writing_prompts (
+                                title, category, prompt_description, starter_template, key_phrases, min_words
+                            ) VALUES (?, ?, ?, ?, ?, ?)
+                        """, (
+                            w["title"], w["category"], w["prompt_description"],
+                            w["starter_template"], json.dumps(w["key_phrases"], ensure_ascii=False),
+                            w["min_words"]
+                        ))
+
         conn.commit()
 
 
@@ -317,3 +429,122 @@ def get_study_history(limit: int = 10) -> List[Dict[str, Any]]:
             ORDER BY id DESC LIMIT ?
         """, (limit,))
         return [dict(row) for row in cursor.fetchall()]
+
+
+# --- 4 Skills Helper Operations ---
+
+def get_dictation_list(category: Optional[str] = None, difficulty: Optional[str] = None) -> List[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        query = "SELECT * FROM dictation_exercises WHERE 1=1"
+        params = []
+        if category and category != "all":
+            query += " AND category = ?"
+            params.append(category)
+        if difficulty and difficulty != "all":
+            query += " AND difficulty = ?"
+            params.append(difficulty)
+        query += " ORDER BY id ASC"
+        cursor.execute(query, params)
+        return [dict(r) for r in cursor.fetchall()]
+
+
+def get_dictation_by_id(exercise_id: int) -> Optional[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM dictation_exercises WHERE id = ?", (exercise_id,))
+        row = cursor.fetchone()
+        return dict(row) if row else None
+
+
+def get_shadowing_list(category: Optional[str] = None, difficulty: Optional[str] = None) -> List[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        query = "SELECT * FROM shadowing_exercises WHERE 1=1"
+        params = []
+        if category and category != "all":
+            query += " AND category = ?"
+            params.append(category)
+        if difficulty and difficulty != "all":
+            query += " AND difficulty = ?"
+            params.append(difficulty)
+        query += " ORDER BY id ASC"
+        cursor.execute(query, params)
+        return [dict(r) for r in cursor.fetchall()]
+
+
+def get_shadowing_by_id(exercise_id: int) -> Optional[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM shadowing_exercises WHERE id = ?", (exercise_id,))
+        row = cursor.fetchone()
+        return dict(row) if row else None
+
+
+def get_reading_articles_list() -> List[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT id, title_en, title_vi, level, category, read_time_minutes
+            FROM reading_articles ORDER BY id ASC
+        """)
+        return [dict(r) for r in cursor.fetchall()]
+
+
+def get_reading_article_by_id(article_id: int) -> Optional[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM reading_articles WHERE id = ?", (article_id,))
+        row = cursor.fetchone()
+        if not row:
+            return None
+        d = dict(row)
+        d["paragraphs_en"] = json.loads(d["paragraphs_en"])
+        d["paragraphs_vi"] = json.loads(d["paragraphs_vi"])
+        d["vocabulary_glossary"] = json.loads(d["vocabulary_glossary"])
+        d["comprehension_questions"] = json.loads(d["comprehension_questions"])
+        return d
+
+
+def get_writing_prompts_list(category: Optional[str] = None) -> List[Dict[str, Any]]:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        if category and category != "all":
+            cursor.execute("SELECT * FROM writing_prompts WHERE category = ? ORDER BY id ASC", (category,))
+        else:
+            cursor.execute("SELECT * FROM writing_prompts ORDER BY id ASC")
+        rows = cursor.fetchall()
+        results = []
+        for r in rows:
+            d = dict(r)
+            d["key_phrases"] = json.loads(d["key_phrases"])
+            results.append(d)
+        return results
+
+
+def add_custom_vocab(
+    word: str,
+    ipa: str,
+    meaning_vi: str,
+    part_of_speech: str = "noun",
+    example_en: str = "",
+    example_vi: str = "",
+    category: str = "Reading Room",
+    level: str = "B1"
+) -> bool:
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        cursor.execute("""
+            INSERT OR IGNORE INTO vocabulary (
+                word, ipa, part_of_speech, definition_en, meaning_vi,
+                example_en, example_vi, category, level,
+                repetition, interval, ease_factor, next_review, mastered
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, 2.5, ?, 0)
+        """, (
+            word.strip().capitalize(), ipa.strip(), part_of_speech.strip(),
+            "", meaning_vi.strip(), example_en.strip(), example_vi.strip(),
+            category.strip(), level.strip(), now_str
+        ))
+        conn.commit()
+        return cursor.rowcount > 0

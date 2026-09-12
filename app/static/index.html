@@ -30,6 +30,22 @@
           <span>Luyện Từ Vựng</span>
           <span class="nav-badge" id="due-badge" style="display:none;">0</span>
         </a>
+        <a class="nav-item" data-tab="listening">
+          <i class="fa-solid fa-headphones"></i>
+          <span>Luyện Nghe (Chép)</span>
+        </a>
+        <a class="nav-item" data-tab="speaking">
+          <i class="fa-solid fa-microphone-lines"></i>
+          <span>Luyện Nói & 60s</span>
+        </a>
+        <a class="nav-item" data-tab="reading">
+          <i class="fa-solid fa-book-open-reader"></i>
+          <span>Luyện Đọc (1-Chạm)</span>
+        </a>
+        <a class="nav-item" data-tab="writing">
+          <i class="fa-solid fa-pen-nib"></i>
+          <span>Luyện Viết (Email)</span>
+        </a>
         <a class="nav-item" data-tab="quiz">
           <i class="fa-solid fa-clipboard-check"></i>
           <span>Ngữ Pháp & Test</span>
@@ -362,7 +378,337 @@
           </table>
         </div>
       </section>
+
+      <!-- VIEW 5: LISTENING (DICTATION) -->
+      <section id="view-listening" class="view-section">
+        <div class="dictation-wrapper">
+          <div class="glass-panel" style="margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700;" id="dict-title">Chép Chính Tả (Audio Dictation)</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted);" id="dict-hint">Gợi ý chủ đề...</p>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge-tag" id="dict-badge-cat">Daily</span>
+                <span class="badge-level" id="dict-badge-diff">Intermediate</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted); margin-left: 8px;" id="dict-counter">Bài 1 / 5</span>
+              </div>
+            </div>
+
+            <!-- Audio playback toolbar -->
+            <div class="playback-controls">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <button class="btn-primary" id="dict-play-btn">
+                  <i class="fa-solid fa-play"></i> Nghe câu mẫu
+                </button>
+                <div class="audio-wave" id="dict-wave">
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                  <span class="wave-bar"></span>
+                </div>
+              </div>
+
+              <div class="speed-selector">
+                <span style="font-size: 0.8rem; color: var(--text-muted); margin-right: 4px;">Tốc độ:</span>
+                <button class="speed-btn" data-speed="0.75">0.75x</button>
+                <button class="speed-btn active" data-speed="1.0">1.0x</button>
+                <button class="speed-btn" data-speed="1.25">1.25x</button>
+              </div>
+            </div>
+
+            <!-- Dictation textarea -->
+            <textarea class="dictation-input-box" id="dict-user-input" placeholder="Lắng nghe âm thanh và gõ lại chính xác từng từ tiếng Anh vào đây..."></textarea>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <button class="btn-primary" id="dict-check-btn">
+                <i class="fa-solid fa-spell-check"></i> Kiểm Tra Kết Quả
+              </button>
+              <button class="btn-primary" id="dict-next-btn" style="display: none; background: rgba(255,255,255,0.08);">
+                Bài tiếp theo <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+
+            <!-- Result Diff Box -->
+            <div class="diff-result-panel" id="dict-result-box" style="display: none;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h4 style="font-size: 1.1rem; color: #fff;">
+                  Độ chính xác: <span style="color: #34d399; font-weight: 800;" id="dict-score-val">100%</span>
+                </h4>
+                <span class="badge-tag" style="background: rgba(245,158,11,0.2); color: #fbbf24;" id="dict-xp-gain">+25 XP</span>
+              </div>
+
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                <span style="color: #34d399;">■ Từ đúng</span> | 
+                <span style="color: #f87171;">■ Từ sai/thay thế</span> | 
+                <span style="color: #fbbf24;">■ Từ bỏ sót [..]</span>
+              </p>
+
+              <div class="diff-display-wrap" id="dict-diff-words"></div>
+
+              <div style="background: rgba(255,255,255,0.03); padding: 12px 16px; border-radius: var(--radius-sm);">
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2px;">Câu hoàn chỉnh:</p>
+                <p style="color: #e2e8f0; font-weight: 600;" id="dict-correct-full"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: SPEAKING (SHADOWING & 60S CHALLENGE) -->
+      <section id="view-speaking" class="view-section">
+        <div class="speaking-grid">
+          <!-- Left: Shadowing Practice -->
+          <div class="glass-panel shw-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <div style="display: flex; gap: 8px;">
+                <span class="badge-tag" id="shw-badge-cat">Mindset</span>
+                <span class="badge-level" id="shw-badge-diff">B2</span>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--text-muted);" id="shw-counter">Mẫu câu 1 / 5</span>
+            </div>
+
+            <h3 class="shw-target-text" id="shw-text">Loading sentence...</h3>
+            <p class="shw-ipa" id="shw-ipa">/loading ipa/</p>
+            <p style="font-size: 1.05rem; color: #34d399; margin-bottom: 8px;" id="shw-meaning">Nghĩa tiếng Việt...</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin-bottom: 24px;" id="shw-tip">Mẹo ngữ điệu...</p>
+
+            <!-- Actions -->
+            <div style="display: flex; justify-content: center; gap: 14px; margin-bottom: 16px;">
+              <button class="btn-primary" id="shw-play-model">
+                <i class="fa-solid fa-volume-high"></i> Nghe giọng bản xứ mẫu
+              </button>
+              <button class="mic-btn" id="shw-mic-btn" style="padding: 10px 20px; font-size: 0.95rem;">
+                <i class="fa-solid fa-microphone"></i> Bật Micro Nhại Lại
+              </button>
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--text-muted);" id="shw-mic-status">Nhấn micro và nói to theo câu mẫu</p>
+
+            <!-- Result Box -->
+            <div class="diff-result-panel" id="shw-result-box" style="display: none; text-align: left; margin-top: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h4 style="color: #fff; font-size: 1.1rem;">
+                  Độ tương đồng: <span style="color: #34d399; font-weight: 800;" id="shw-score-percent">0%</span>
+                  <span class="badge-tag" style="margin-left: 8px;" id="shw-score-badge">Tốt</span>
+                </h4>
+                <span class="badge-tag" style="background: rgba(245,158,11,0.2); color: #fbbf24;" id="shw-xp-gain">+20 XP</span>
+              </div>
+              <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 12px;" id="shw-feedback-text">Nhận xét...</p>
+              
+              <p style="font-size: 0.78rem; color: var(--text-muted);">Phân tích từng từ (Xanh: chuẩn / Đỏ: cần chỉnh):</p>
+              <div class="shw-words-container" id="shw-words-analysis"></div>
+
+              <div style="margin-top: 16px; text-align: right;">
+                <button class="btn-primary" id="shw-next-btn">
+                  Mẫu câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: 60s Speaking Challenge -->
+          <div class="glass-panel challenge-box">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 6px;">
+              ⏱️ Thử Thách 60s Nói Tự Do
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 14px;">
+              Đồng hồ 60 giây luyện phản xạ nói tiếng Anh liên tục không ngắt quãng
+            </p>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: var(--radius-md); text-align: left; margin-bottom: 14px;">
+              <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: 600;">CHỦ ĐỀ GỢI Ý:</span>
+              <p style="font-size: 0.9rem; color: #e2e8f0; margin-top: 4px;">
+                "Describe a skill or technology that has changed your daily life recently."
+              </p>
+            </div>
+
+            <div class="timer-circle" id="challenge-timer">60s</div>
+
+            <div style="margin-bottom: 14px;">
+              <span style="font-size: 0.85rem; color: var(--text-muted);">Số từ đã nói: </span>
+              <span style="font-size: 1rem; font-weight: 700; color: #34d399;" id="challenge-word-count">0 từ</span>
+            </div>
+
+            <button class="btn-primary" id="challenge-start-btn" style="width: 100%; justify-content: center; margin-bottom: 14px;">
+              <i class="fa-solid fa-play"></i> Bắt đầu thử thách
+            </button>
+
+            <!-- Live Speech-to-text transcript -->
+            <div style="background: rgba(0,0,0,0.3); padding: 12px; border-radius: var(--radius-sm); min-height: 80px; max-height: 120px; overflow-y: auto; text-align: left; font-size: 0.85rem; color: #cbd5e1;" id="challenge-transcript">
+              Lời bạn nói sẽ hiển thị trực tiếp tại đây...
+            </div>
+
+            <div id="challenge-stats" style="display: none; margin-top: 10px; font-size: 0.85rem; color: #34d399;" id="challenge-result-summary"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 7: READING (SMART READING ROOM & 1-CLICK LEXICON) -->
+      <section id="view-reading" class="view-section">
+        <div class="reading-layout">
+          <!-- Left: Article selector -->
+          <div>
+            <h4 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase;">
+              Thư Viện Bài Đọc
+            </h4>
+            <div id="read-article-list"></div>
+          </div>
+
+          <!-- Right: Interactive Reading Area -->
+          <div class="glass-panel reading-content-area">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 20px;">
+              <div>
+                <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+                  <span class="badge-tag" id="read-cat-badge">Productivity</span>
+                  <span class="badge-level" id="read-level-badge">B1</span>
+                </div>
+                <h3 style="font-size: 1.4rem; font-weight: 700;" id="read-title-en">Loading article...</h3>
+                <p style="font-size: 0.9rem; color: #34d399;" id="read-title-vi">Nhan đề tiếng Việt...</p>
+              </div>
+
+              <button class="chip-btn" id="read-toggle-vi">
+                <i class="fa-solid fa-language"></i> Hiện bản dịch tiếng Việt
+              </button>
+            </div>
+
+            <div style="font-size: 0.82rem; color: var(--accent-cyan); margin-bottom: 16px;">
+              <i class="fa-solid fa-hand-pointer"></i> <em>Mẹo: Bấm vào bất kỳ từ tiếng Anh nào trong bài để tra nghĩa, phát âm và lưu vào Flashcards!</em>
+            </div>
+
+            <!-- Paragraphs -->
+            <div id="read-paragraphs-content"></div>
+
+            <!-- Comprehension Questions -->
+            <div style="margin-top: 36px; border-top: 1px solid var(--border-color); padding-top: 24px;">
+              <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px;">
+                <i class="fa-solid fa-circle-question"></i> Câu Hỏi Đọc Hiểu (Comprehension Check)
+              </h4>
+              <div id="read-questions-container"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 8: WRITING (WRITING LAB & EMAIL COACH) -->
+      <section id="view-writing" class="view-section">
+        <div class="writing-layout">
+          <!-- Left: Prompt selector -->
+          <div>
+            <h4 style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase;">
+              Mẫu Đề Tài Thực Chiến
+            </h4>
+            <div id="write-prompt-list"></div>
+          </div>
+
+          <!-- Right: Writing Studio -->
+          <div class="glass-panel">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 700;" id="write-prompt-title">Email Xin Nghỉ Phép</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;" id="write-prompt-desc">Mô tả đề bài...</p>
+              </div>
+              <button class="chip-btn" id="write-use-template-btn">
+                <i class="fa-solid fa-file-lines"></i> Nạp khung mẫu (Starter)
+              </button>
+            </div>
+
+            <!-- Key phrases -->
+            <div style="margin-bottom: 16px;">
+              <span style="font-size: 0.78rem; color: var(--text-muted); margin-right: 6px;">Cụm từ đắt giá gợi ý:</span>
+              <div id="write-key-phrases" style="display: inline-block;"></div>
+            </div>
+
+            <!-- Writing Textarea -->
+            <textarea class="writing-editor-box" id="write-editor" placeholder="Soạn thảo email hoặc bài viết tiếng Anh của bạn tại đây..."></textarea>
+
+            <!-- Live stats bar -->
+            <div class="writing-stats-bar">
+              <span>Độ dài: <strong style="color:#fff;" id="write-word-count-live">0 từ</strong></span>
+              <span>Ký tự: <strong style="color:#fff;" id="write-char-count-live">0 ký tự</strong></span>
+              <div style="margin-left: auto;">
+                <button class="btn-primary" id="write-eval-btn">
+                  <i class="fa-solid fa-chart-simple"></i> Đánh Giá Bài Viết
+                </button>
+              </div>
+            </div>
+
+            <!-- Evaluation Results -->
+            <div class="diff-result-panel" id="write-eval-results" style="display: none; margin-top: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <h4 style="font-size: 1.15rem; color: #fff;">
+                  Đánh giá chung: <span style="color: #34d399; font-weight: 700;" id="write-score-rating">Professional</span>
+                </h4>
+                <div style="display: flex; gap: 8px;">
+                  <span class="badge-tag" style="background: rgba(99,102,241,0.2); color:#a5b4fc;">
+                    Độ phong phú từ vựng: <strong id="write-score-richness">80/100</strong>
+                  </span>
+                  <span class="badge-tag" style="background: rgba(245,158,11,0.2); color: #fbbf24;" id="write-xp-gain">+35 XP</span>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                <div>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Từ vựng nâng cao phát hiện:</span>
+                  <div id="write-adv-words-box" style="margin-top: 6px;"></div>
+                </div>
+                <div>
+                  <span style="font-size: 0.8rem; color: var(--text-muted);">Độ dài câu trung bình:</span>
+                  <div style="margin-top: 6px; font-weight: 600; color: #67e8f9;" id="write-avg-len">16 từ/câu</div>
+                </div>
+              </div>
+
+              <!-- Grammar Feedback -->
+              <div style="margin-bottom: 16px;">
+                <span style="font-size: 0.82rem; color: #fcd34d; font-weight: 600;">
+                  <i class="fa-solid fa-wrench"></i> Góp ý ngữ pháp & lỗi diễn đạt:
+                </span>
+                <div id="write-grammar-feedback" style="margin-top: 6px;"></div>
+              </div>
+
+              <!-- Polished native version -->
+              <div class="polished-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 0.85rem; color: #34d399; font-weight: 700;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Phiên bản viết lại chuẩn phong cách bản xứ:
+                  </span>
+                  <button class="chip-btn" id="write-copy-polished-btn" style="padding: 2px 10px; font-size: 0.75rem;">
+                    <i class="fa-solid fa-copy"></i> Sao chép
+                  </button>
+                </div>
+                <p style="font-size: 0.95rem; color: #f1f5f9; line-height: 1.6;" id="write-polished-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+  </div>
+
+  <!-- 1-Click Lexicon Modal Popover -->
+  <div class="lexicon-modal" id="lexicon-modal" style="display: none;">
+    <button class="lex-close-btn" id="lexicon-modal-close"><i class="fa-solid fa-xmark"></i></button>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <h3 style="font-size: 1.75rem; font-weight: 800; color: #fff;" id="lex-word">Word</h3>
+      <span class="badge-tag" id="lex-pos">noun</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+      <span style="color: var(--accent-cyan); font-family: 'Inter', monospace; font-size: 1.1rem;" id="lex-ipa">/ipa/</span>
+      <button class="audio-btn" id="lex-audio-btn" style="width: 32px; height: 32px;" title="Nghe phát âm">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+    </div>
+
+    <div style="background: rgba(255,255,255,0.04); padding: 14px; border-radius: var(--radius-md); margin-bottom: 18px;">
+      <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Nghĩa tiếng Việt</span>
+      <p style="font-size: 1.15rem; font-weight: 700; color: #34d399; margin-top: 2px;" id="lex-meaning">Nghĩa của từ</p>
+    </div>
+
+    <button class="btn-primary" id="lexicon-add-vocab-btn" style="width: 100%; justify-content: center;">
+      <i class="fa-solid fa-plus"></i> Thêm vào Flashcards ôn tập (+5 XP)
+    </button>
   </div>
 
   <!-- Toast Notification Container -->
@@ -373,6 +719,7 @@
   <script src="/static/js/flashcards.js"></script>
   <script src="/static/js/quiz.js"></script>
   <script src="/static/js/tutor.js"></script>
+  <script src="/static/js/skills.js"></script>
   <script src="/static/js/app.js"></script>
 </body>
 </html>

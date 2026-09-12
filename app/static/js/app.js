@@ -11,6 +11,10 @@ const App = {
     window.FlashcardsApp.init();
     window.QuizApp.init();
     window.TutorApp.init();
+    if (window.ListeningController) window.ListeningController.init();
+    if (window.SpeakingController) window.SpeakingController.init();
+    if (window.ReadingController) window.ReadingController.init();
+    if (window.WritingController) window.WritingController.init();
   },
 
   bindNavigation() {

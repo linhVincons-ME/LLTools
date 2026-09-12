@@ -1,0 +1,217 @@
+{
+  "dictation_exercises": [
+    {
+      "title": "Daily Routine & Coffee",
+      "difficulty": "Beginner",
+      "category": "Daily Life",
+      "transcript": "I usually start my morning with a cup of hot black coffee and fifteen minutes of reading.",
+      "hint_vi": "Nghe về thói quen buổi sáng kèm một tách cà phê và việc đọc sách."
+    },
+    {
+      "title": "Setting Project Milestones",
+      "difficulty": "Intermediate",
+      "category": "Business",
+      "transcript": "Our software engineering team must establish clear project milestones before the end of this quarterly sprint.",
+      "hint_vi": "Nghe về việc thiết lập các cột mốc dự án trước khi kết thúc quý."
+    },
+    {
+      "title": "Artificial Intelligence & Future of Work",
+      "difficulty": "Advanced",
+      "category": "Technology",
+      "transcript": "The rapid advancement of generative artificial intelligence is fundamentally transforming traditional corporate workflows across the globe.",
+      "hint_vi": "Nghe về sự phát triển nhanh chóng của trí tuệ nhân tạo tạo sinh làm biến đổi quy trình làm việc toàn cầu."
+    },
+    {
+      "title": "Booking a Flight to London",
+      "difficulty": "Beginner",
+      "category": "Travel",
+      "transcript": "Could you please confirm whether my baggage allowance includes one carry on bag and one checked suitcase?",
+      "hint_vi": "Nghe về việc xác nhận tiêu chuẩn hành lý xách tay và ký gửi khi bay."
+    },
+    {
+      "title": "Environmental Sustainability",
+      "difficulty": "Advanced",
+      "category": "Science",
+      "transcript": "Renewable energy adoption has accelerated significantly as municipal governments enact stricter carbon emission regulations.",
+      "hint_vi": "Nghe về việc áp dụng năng lượng tái tạo tăng tốc khi các chính quyền ban hành quy định khí thải."
+    }
+  ],
+  "shadowing_exercises": [
+    {
+      "text": "Consistency is far more critical than short term motivation when mastering a foreign language.",
+      "ipa": "/kənˈsɪs.tən.si ɪz fɑːr mɔːr ˈkrɪt.ɪ.kəl ðæn ʃɔːrt tɜːrm ˌmoʊ.təˈveɪ.ʃən wɛn ˈmæs.tər.ɪŋ ə ˈfɔːr.ən ˈlæŋ.ɡwɪdʒ/",
+      "meaning_vi": "Sự kiên trì quan trọng hơn nhiều so với động lực ngắn hạn khi muốn làm chủ một ngoại ngữ.",
+      "category": "Mindset",
+      "difficulty": "B2",
+      "intonation_tip": "Nhấn mạnh vào các từ trọng tâm: 'Consistency', 'critical', 'motivation', 'mastering'."
+    },
+    {
+      "text": "I would really appreciate it if you could provide feedback on our proposal by tomorrow afternoon.",
+      "ipa": "/aɪ wʊd ˈrɪə.li əˈpriː.ʃi.eɪt ɪt ɪf juː kʊd prəˈvaɪd ˈfiːd.bæk ɒn ˈaʊər prəˈpoʊ.zəl baɪ təˈmɒr.oʊ ˌæf.tərˈnuːn/",
+      "meaning_vi": "Tôi sẽ rất biết ơn nếu bạn có thể gửi phản hồi về bản đề xuất của chúng tôi trước chiều mai.",
+      "category": "Business",
+      "difficulty": "B1",
+      "intonation_tip": "Lên giọng nhẹ ở mệnh đề 'if you could', hạ giọng lịch sự ở cuối câu."
+    },
+    {
+      "text": "Despite the unexpected obstacles, the entire development team delivered the feature right on schedule.",
+      "ipa": "/dɪˈspaɪt ðiː ˌʌn.ɪkˈspek.tɪd ˈɒb.stə.kəlz, ði ɪnˈtaɪər dɪˈvel.əp.mənt tiːm dɪˈlɪv.ərd ðə ˈfiː.tʃər raɪt ɒn ˈskedʒ.uːl/",
+      "meaning_vi": "Dù gặp nhiều trở ngại bất ngờ, toàn bộ đội ngũ phát triển vẫn bàn giao tính năng đúng hạn.",
+      "category": "Workplace",
+      "difficulty": "B2",
+      "intonation_tip": "Nghỉ nhẹ sau dấu phẩy 'obstacles', tăng tốc độ nhịp điệu ở 'delivered the feature'."
+    },
+    {
+      "text": "Could you recommend a scenic spot where I can take memorable photos around the harbor?",
+      "ipa": "/kʊd juː ˌrek.əˈmend ə ˈsiː.nɪk spɒt weər aɪ kæn teɪk ˈmem.ər.ə.bəl ˈfoʊ.toʊz əˈraʊnd ðə ˈhɑːr.bər/",
+      "meaning_vi": "Bạn có thể gợi ý một điểm ngắm cảnh đẹp để tôi chụp những bức ảnh kỷ niệm quanh bến cảng không?",
+      "category": "Travel",
+      "difficulty": "A2",
+      "intonation_tip": "Câu hỏi Yes/No nhẹ nhàng, lên giọng ở từ cuối 'harbor?'."
+    },
+    {
+      "text": "Embracing technological innovation allows modern enterprises to maintain a robust competitive edge.",
+      "ipa": "/ɪmˈbreɪ.sɪŋ ˌtek.nəˈlɒdʒ.ɪ.kəl ˌɪn.əˈveɪ.ʃən əˈlaʊz ˈmɒd.ərn ˈen.tə.praɪ.zɪz tuː meɪnˈteɪn ə roʊˈbʌst kəmˈpet.ɪ.tɪv edʒ/",
+      "meaning_vi": "Đón nhận đổi mới công nghệ cho phép các doanh nghiệp hiện đại duy trì lợi thế cạnh tranh vững chắc.",
+      "category": "Academic",
+      "difficulty": "C1",
+      "intonation_tip": "Phát âm rõ cụm từ 'competitive edge' với ngữ điệu chắc chắn, dứt khoát."
+    }
+  ],
+  "reading_articles": [
+    {
+      "title_en": "The Power of Micro-Habits in Learning",
+      "title_vi": "Sức Mạnh Của Những Thói Quen Nhỏ Trong Học Tập",
+      "level": "B1",
+      "category": "Productivity",
+      "read_time_minutes": 3,
+      "paragraphs_en": [
+        "Most people assume that dramatic progress requires massive effort. They believe that studying five continuous hours once a week will make them fluent in English. However, cognitive psychology suggests the opposite: tiny, consistent daily habits yield far superior results.",
+        "When you study just fifteen minutes every morning, your brain easily forms neural connections without cognitive fatigue. This phenomenon is known as the compounding effect. Over a single year, fifteen minutes a day equals over ninety hours of active language exposure.",
+        "To build a sustainable learning routine, anchor your English practice to an existing habit. For example, review ten flashcards while sipping your morning coffee, or listen to a short audio lesson during your commute. Small actions, repeated faithfully, create remarkable transformations."
+      ],
+      "paragraphs_vi": [
+        "Hầu hết mọi người đều cho rằng sự tiến bộ vượt bậc đòi hỏi nỗ lực to lớn. Họ tin rằng học năm tiếng liên tục mỗi tuần một lần sẽ giúp họ lưu loát tiếng Anh. Tuy nhiên, tâm lý học nhận thức lại chỉ ra điều ngược lại: những thói quen nhỏ, kiên trì mỗi ngày mới mang lại kết quả vượt trội hơn nhiều.",
+        "Khi bạn học chỉ mười lăm phút mỗi buổi sáng, não bộ sẽ dễ dàng hình thành các liên kết thần kinh mà không bị kiệt sức nhận thức. Hiện tượng này được gọi là hiệu ứng lãi kép. Qua một năm, mười lăm phút mỗi ngày tương đương với hơn chín mươi giờ tiếp xúc ngôn ngữ chủ động.",
+        "Để xây dựng một thói quen học tập bền vững, hãy gắn việc luyện tiếng Anh vào một thói quen đã có sẵn. Ví dụ, ôn mười thẻ từ vựng khi đang nhâm nhi cà phê sáng, hoặc nghe một bài học âm thanh ngắn trong lúc đi làm. Những hành động nhỏ được lặp lại đều đặn sẽ tạo ra những chuyển biến phi thường."
+      ],
+      "vocabulary_glossary": [
+        { "word": "Cognitive", "ipa": "/ˈkɒɡ.nə.tɪv/", "meaning_vi": "Thuộc về nhận thức, tư duy", "pos": "adjective" },
+        { "word": "Compounding", "ipa": "/kəmˈpaʊn.dɪŋ/", "meaning_vi": "Tính gộp, hiệu ứng cộng dồn/lãi kép", "pos": "noun" },
+        { "word": "Sustainable", "ipa": "/səˈsteɪ.nə.bəl/", "meaning_vi": "Bền vững, có thể duy trì lâu dài", "pos": "adjective" },
+        { "word": "Exposure", "ipa": "/ɪkˈspoʊ.ʒər/", "meaning_vi": "Sự tiếp xúc, trải nghiệm thực tế", "pos": "noun" },
+        { "word": "Remarkable", "ipa": "/rɪˈmɑːr.kə.bəl/", "meaning_vi": "Đáng chú ý, xuất sắc, phi thường", "pos": "adjective" }
+      ],
+      "comprehension_questions": [
+        {
+          "question": "What does cognitive psychology suggest about learning effectiveness?",
+          "options": [
+            "Studying 5 hours once a week is the best method",
+            "Tiny, consistent daily habits yield superior results",
+            "Language learning requires no effort at all",
+            "Morning habits are useless compared to evening habits"
+          ],
+          "correct_answer": 1,
+          "explanation_vi": "Đoạn 1 nêu rõ: 'tiny, consistent daily habits yield far superior results' (những thói quen nhỏ, kiên trì mỗi ngày mang lại kết quả vượt trội hơn nhiều)."
+        },
+        {
+          "question": "How many hours of language exposure does 15 minutes a day accumulate to in one year?",
+          "options": ["About 30 hours", "About 50 hours", "Over 90 hours", "Over 200 hours"],
+          "correct_answer": 2,
+          "explanation_vi": "Đoạn 2 chỉ ra: 'Over a single year, fifteen minutes a day equals over ninety hours of active language exposure'."
+        }
+      ]
+    },
+    {
+      "title_en": "Navigating the Future of Remote Collaboration",
+      "title_vi": "Định Hướng Tương Lai Làm Việc Từ Xa & Phối Hợp Nhóm",
+      "level": "B2",
+      "category": "Technology",
+      "read_time_minutes": 4,
+      "paragraphs_en": [
+        "The modern digital workplace has decoupled productivity from physical office presence. Global organizations increasingly embrace asynchronous communication, allowing cross-border teams to collaborate effectively regardless of geographic time zones.",
+        "Nevertheless, remote work introduces distinct challenges, notably the absence of spontaneous hallway interactions that frequently foster innovation. To mitigate feelings of isolation, progressive companies invest heavily in structured virtual coffee chats and transparent digital documentation.",
+        "Successful remote professionals distinguish themselves through concise written communication. When emails, pull requests, and status updates are lucid and courteous, unnecessary back-and-forth meetings are eliminated, unlocking deeper creative focus."
+      ],
+      "paragraphs_vi": [
+        "Môi trường làm việc số hiện đại đã tách biệt năng suất khỏi sự hiện diện tại văn phòng vật lý. Các tổ chức toàn cầu ngày càng đón nhận giao tiếp bất đồng bộ, cho phép các nhóm xuyên biên giới phối hợp hiệu quả bất kể múi giờ địa lý.",
+        "Tuy vậy, làm việc từ xa cũng mang lại những thách thức riêng biệt, đáng chú ý là sự thiếu vắng những tương tác tình cờ nơi hành lang vốn thường ươm mầm cho sự đổi mới sáng tạo. Để giảm bớt cảm giác cô lập, các công ty tiến bộ đầu tư mạnh vào các buổi trò chuyện ảo có cấu trúc và tài liệu số minh bạch.",
+        "Những nhân sự làm việc từ xa thành công luôn tạo sự khác biệt nhờ khả năng giao tiếp bằng văn bản ngắn gọn, súc tích. Khi email, yêu cầu phản hồi và báo cáo tiến độ rõ ràng, lịch thiệp, các cuộc họp trao đổi không cần thiết sẽ được loại bỏ, mở ra sự tập trung sâu sắc cho sáng tạo."
+      ],
+      "vocabulary_glossary": [
+        { "word": "Decoupled", "ipa": "/diːˈkʌp.əld/", "meaning_vi": "Tách rời, không còn bị ràng buộc", "pos": "verb/adj" },
+        { "word": "Asynchronous", "ipa": "/eɪˈsɪŋ.krə.nəs/", "meaning_vi": "Bất đồng bộ (không cần cùng thời điểm)", "pos": "adjective" },
+        { "word": "Spontaneous", "ipa": "/spɒnˈteɪ.ni.əs/", "meaning_vi": "Tự phát, tự nhiên, không sắp đặt trước", "pos": "adjective" },
+        { "word": "Lucid", "ipa": "/ˈluː.sɪd/", "meaning_vi": "Rõ ràng, mạch lạc, dễ hiểu", "pos": "adjective" },
+        { "word": "Courteous", "ipa": "/ˈkɜː.ti.əs/", "meaning_vi": "Lịch thiệp, nhã nhặn, tôn trọng", "pos": "adjective" }
+      ],
+      "comprehension_questions": [
+        {
+          "question": "What is one key challenge of remote work mentioned in the article?",
+          "options": [
+            "Lack of internet connection in modern cities",
+            "Absence of spontaneous interactions that foster innovation",
+            "Inability to write digital documentation",
+            "Working hours being completely removed"
+          ],
+          "correct_answer": 1,
+          "explanation_vi": "Đoạn 2 nêu rõ: 'notably the absence of spontaneous hallway interactions that frequently foster innovation'."
+        }
+      ]
+    }
+  ],
+  "writing_prompts": [
+    {
+      "title": "Email Xin Nghỉ Phép Ngắn Hạn (Leave Request)",
+      "category": "Business Email",
+      "prompt_description": "Viết email gửi quản lý trực tiếp (Manager) thông báo xin nghỉ phép 2 ngày vì lý do cá nhân. Đảm bảo bàn giao công việc rõ ràng cho đồng nghiệp và cung cấp số điện thoại liên lạc khi khẩn cấp.",
+      "starter_template": "Dear [Manager Name],\n\nI am writing to formally request two days of annual leave from [Date] to [Date] due to [personal matters / family commitments].\n\nBefore taking leave, I have ensured that all my critical tasks are up to date. Specifically, [Colleague Name] has kindly agreed to cover [task/project] during my absence.\n\nShould any urgent issues arise, I can be reached via phone at [phone number].\n\nThank you very much for your understanding and support.\n\nBest regards,\n[Your Name]",
+      "key_phrases": [
+        "formally request leave",
+        "ensure all critical tasks are up to date",
+        "has kindly agreed to cover",
+        "should any urgent issues arise"
+      ],
+      "min_words": 45
+    },
+    {
+      "title": "Email Báo Cáo Tiến Độ Dự Án (Project Status Update)",
+      "category": "Business Email",
+      "prompt_description": "Viết email cập nhật tiến độ công việc tuần này cho trưởng dự án và đối tác. Nêu bật các tính năng đã hoàn thành, một khó khăn kỹ thuật đang giải quyết và kế hoạch tuần tới.",
+      "starter_template": "Hi Team,\n\nI would like to share a brief update on our progress for this week.\n\nKey accomplishments:\n- Completed [Feature A] ahead of schedule.\n- Successfully conducted unit and integration testing.\n\nCurrent challenges & mitigation:\n- We noticed minor latency in [Module], which we are optimizing by refactoring the query logic.\n\nNext steps for next week:\n- Finalize deployment to staging and gather stakeholder feedback.\n\nPlease let me know if you have any questions.\n\nBest regards,\n[Your Name]",
+      "key_phrases": [
+        "key accomplishments",
+        "ahead of schedule",
+        "conducted integration testing",
+        "gather stakeholder feedback"
+      ],
+      "min_words": 50
+    },
+    {
+      "title": "Thư Xin Việc (Cover Letter Paragraph)",
+      "category": "Job Application",
+      "prompt_description": "Viết đoạn văn mở đầu thư xin việc ứng tuyển vị trí chuyên viên/kỹ sư phần mềm. Trình bày lý do bạn ấn tượng với công ty và tóm tắt ngắn gọn thế mạnh chuyên môn của bạn.",
+      "starter_template": "Dear Hiring Manager,\n\nI am writing to express my enthusiastic interest in the [Job Title] position at [Company Name]. With over [Number] years of hands-on experience in [your field / software engineering], I have developed a strong track record in delivering scalable and efficient solutions.\n\nI have closely followed [Company Name]'s achievements in [field/innovation], and I am inspired by your commitment to [core value/mission]. I am confident that my technical proficiency and collaborative mindset will enable me to make immediate contributions to your engineering team.\n\nThank you for considering my application.\n\nSincerely,\n[Your Name]",
+      "key_phrases": [
+        "express my enthusiastic interest",
+        "strong track record in delivering",
+        "make immediate contributions",
+        "collaborative mindset"
+      ],
+      "min_words": 60
+    },
+    {
+      "title": "Đoạn Văn Nghị Luận: Lợi Ích Của Học Trực Tuyến",
+      "category": "Essay",
+      "prompt_description": "Viết một đoạn văn nghị luận (IELTS Task 2 style) khoảng 70-100 từ bàn về lợi ích của việc tự học trực tuyến đối với người đi làm bận rộn.",
+      "starter_template": "Online learning platforms have revolutionized adult education by offering unprecedented flexibility. For busy working professionals, virtual courses eliminate geographic constraints and commute times, allowing individuals to balance professional responsibilities with personal development. Furthermore, self-paced interactive tools empower learners to review challenging concepts repeatedly until mastery is achieved. In conclusion, digital education is an indispensable instrument for lifelong learning.",
+      "key_phrases": [
+        "revolutionized adult education",
+        "unprecedented flexibility",
+        "eliminate geographic constraints",
+        "indispensable instrument for lifelong learning"
+      ],
+      "min_words": 65
+    }
+  ]
+}
