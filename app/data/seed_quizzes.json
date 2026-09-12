@@ -1,0 +1,114 @@
+[
+  {
+    "topic": "Tenses",
+    "difficulty": "Intermediate",
+    "question": "By the time the manager arrived at the office, the team _______ the client presentation.",
+    "options": [
+      "already finished",
+      "had already finished",
+      "has already finished",
+      "will have finished"
+    ],
+    "correct_answer": 1,
+    "explanation_vi": "Sử dụng thì Quá khứ hoàn thành (had + V3/ed) để diễn tả hành động đã xảy ra và hoàn tất trước một hành động khác trong quá khứ (arrived).",
+    "rule_summary": "Thì Quá khứ hoàn thành: S + had + V3/ed diễn tả hành động xảy ra trước hành động quá khứ đơn (By the time + Past Simple, Past Perfect)."
+  },
+  {
+    "topic": "Conditionals",
+    "difficulty": "Intermediate",
+    "question": "If we had invested in automated testing earlier, we _______ so many bugs in production now.",
+    "options": [
+      "would not have",
+      "will not have",
+      "would not have had",
+      "did not have"
+    ],
+    "correct_answer": 0,
+    "explanation_vi": "Đây là câu điều kiện hỗn hợp (Mixed Conditional): Giả định quá khứ (If + had + V3) nhưng kết quả ảnh hưởng đến hiện tại (now -> would + V-bare).",
+    "rule_summary": "Mixed Conditional (Loại 3 + Loại 2): If + Past Perfect (giả thiết quá khứ), S + would/could + V-bare (kết quả ở hiện tại)."
+  },
+  {
+    "topic": "Prepositions",
+    "difficulty": "Beginner",
+    "question": "The annual technology conference will take place _______ July 15th _______ Melbourne.",
+    "options": [
+      "at / in",
+      "in / at",
+      "on / in",
+      "on / at"
+    ],
+    "correct_answer": 2,
+    "explanation_vi": "Dùng giới từ 'on' cho ngày cụ thể trong tháng (July 15th) và 'in' cho thành phố, quốc gia (Melbourne).",
+    "rule_summary": "Giới từ chỉ thời gian & nơi chốn: ON + ngày cụ thể; IN + thành phố, quốc gia, năm, tháng không có ngày."
+  },
+  {
+    "topic": "Phrasal Verbs",
+    "difficulty": "Intermediate",
+    "question": "The board decided to _______ the launch until all security audits are completed.",
+    "options": [
+      "call off",
+      "put off",
+      "give up",
+      "take after"
+    ],
+    "correct_answer": 1,
+    "explanation_vi": "'Put off' nghĩa là hoãn lại (delay/postpone). Trong khi 'call off' là hủy bỏ hoàn toàn (cancel). Câu này nói hoãn cho đến khi kiểm toán xong.",
+    "rule_summary": "Put off = Trì hoãn một sự việc sang thời điểm sau; Call off = Hủy bỏ một sự kiện."
+  },
+  {
+    "topic": "Passive Voice",
+    "difficulty": "Intermediate",
+    "question": "The new security regulations _______ to all company employees next Monday.",
+    "options": [
+      "will explain",
+      "are explaining",
+      "will be explained",
+      "have been explaining"
+    ],
+    "correct_answer": 2,
+    "explanation_vi": "Chủ ngữ 'The new security regulations' (các quy định an toàn mới) là vật chịu tác động, kết hợp với trạng từ thời gian 'next Monday' nên cần thì Tương lai đơn thể Bị động: will be + V3/ed.",
+    "rule_summary": "Bị động tương lai đơn: S + will be + V3/ed (Past Participle)."
+  },
+  {
+    "topic": "Relative Clauses",
+    "difficulty": "Advanced",
+    "question": "The software engineer _______ algorithm optimized our latency won the innovation award.",
+    "options": [
+      "who",
+      "whom",
+      "whose",
+      "which"
+    ],
+    "correct_answer": 2,
+    "explanation_vi": "Dùng 'whose' là đại từ quan hệ sở hữu chỉ quyền sở hữu đối với danh từ đứng sau nó (thuật toán CỦA kỹ sư phần mềm).",
+    "rule_summary": "Whose + Noun: Đại từ quan hệ chỉ sở hữu cho cả người và vật."
+  },
+  {
+    "topic": "Tenses",
+    "difficulty": "Beginner",
+    "question": "She _______ English since she moved to Toronto three years ago.",
+    "options": [
+      "is studying",
+      "has been studying",
+      "studied",
+      "was studying"
+    ],
+    "correct_answer": 1,
+    "explanation_vi": "Cấu trúc 'Since + mốc thời gian/mệnh đề quá khứ đơn' thường đi với thì Hiện tại hoàn thành tiếp diễn để nhấn mạnh tính liên tục của hành động kéo dài đến nay.",
+    "rule_summary": "Hiện tại hoàn thành (tiếp diễn): S + have/has (been) + V-ing/V3 + since + Past Simple."
+  },
+  {
+    "topic": "Conditionals",
+    "difficulty": "Beginner",
+    "question": "If you _______ daily English flashcards, your active vocabulary will expand rapidly.",
+    "options": [
+      "review",
+      "reviewed",
+      "will review",
+      "would review"
+    ],
+    "correct_answer": 0,
+    "explanation_vi": "Câu điều kiện loại 1 diễn tả sự việc có thể xảy ra ở hiện tại hoặc tương lai. Mệnh đề If dùng thì Hiện tại đơn (review).",
+    "rule_summary": "Conditional Type 1: If + Present Simple, S + will/can + V-bare."
+  }
+]

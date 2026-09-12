@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLTools - Nền Tảng Học & Đào Tạo Tiếng Anh Thông Minh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div class="brand-info">
+          <h1>LLTools</h1>
+          <span>English Master Suite</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <a class="nav-item active" data-tab="flashcards">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Luyện Từ Vựng</span>
+          <span class="nav-badge" id="due-badge" style="display:none;">0</span>
+        </a>
+        <a class="nav-item" data-tab="quiz">
+          <i class="fa-solid fa-clipboard-check"></i>
+          <span>Ngữ Pháp & Test</span>
+        </a>
+        <a class="nav-item" data-tab="tutor">
+          <i class="fa-solid fa-robot"></i>
+          <span>Trợ Lý Hội Thoại AI</span>
+        </a>
+        <a class="nav-item" data-tab="dashboard">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Tiến Trình & XP</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-quick-card">
+          <div class="avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="user-details">
+            <h4 id="user-rank-name">Học Viên Tích Cực</h4>
+            <p>Tự học hàng ngày</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        <div class="page-title">
+          <h2>LLTools Learning Platform</h2>
+          <p>Hệ thống tự học và nâng cao năng lực tiếng Anh toàn diện</p>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-pill xp">
+            <i class="fa-solid fa-bolt"></i>
+            <span class="stat-val" id="stat-xp-val">0 XP</span>
+          </div>
+          <div class="stat-pill streak">
+            <i class="fa-solid fa-fire"></i>
+            <span class="stat-val" id="stat-streak-val">1 Ngày</span>
+          </div>
+          <div class="stat-pill vocab">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span class="stat-val" id="stat-vocab-val">0 Từ</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW 1: FLASHCARDS -->
+      <section id="view-flashcards" class="view-section active">
+        <div class="flashcards-container">
+          <!-- Filter Bar -->
+          <div class="fc-filter-bar">
+            <div class="fc-categories">
+              <button class="chip-btn active" data-cat="all">Tất cả từ vựng</button>
+              <button class="chip-btn" data-cat="Oxford 3000">Oxford 3000</button>
+              <button class="chip-btn" data-cat="IELTS Academic">IELTS Academic</button>
+              <button class="chip-btn" data-cat="TOEIC Business">TOEIC Business</button>
+              <button class="chip-btn" data-cat="Common Idioms">Thành ngữ (Idioms)</button>
+            </div>
+            <span class="badge-tag" id="fc-counter">0 / 0</span>
+          </div>
+
+          <!-- 3D Flashcard Flip -->
+          <div class="card-scene">
+            <div class="flashcard" id="flashcard">
+              <!-- Front Face -->
+              <div class="card-face card-front">
+                <div class="card-header-badge">
+                  <span class="badge-tag" id="fc-category">Oxford 3000</span>
+                  <span class="badge-level" id="fc-level">B2</span>
+                </div>
+
+                <div class="card-body-center">
+                  <h2 class="card-word" id="fc-word">Loading...</h2>
+                  <div class="card-ipa-wrap">
+                    <span class="card-ipa" id="fc-ipa">/ˈloʊ.dɪŋ/</span>
+                    <button class="audio-btn" id="fc-audio-btn" title="Nghe phát âm chuẩn (US)">
+                      <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                  </div>
+                  <p class="card-pos" id="fc-pos">noun</p>
+                </div>
+
+                <div class="card-hint">
+                  <i class="fa-solid fa-hand-pointer"></i>
+                  <span>Nhấn vào thẻ để xem nghĩa tiếng Việt & ví dụ</span>
+                </div>
+              </div>
+
+              <!-- Back Face -->
+              <div class="card-face card-back">
+                <div class="card-header-badge">
+                  <span class="badge-tag" id="fc-back-category">Oxford 3000</span>
+                  <span class="badge-level" id="fc-back-level">B2</span>
+                </div>
+
+                <div class="card-body-center">
+                  <h3 class="card-meaning-vi" id="fc-meaning-vi">Đang tải...</h3>
+                  <p class="card-def-en" id="fc-def-en">English definition...</p>
+                  <div class="card-examples">
+                    <p class="example-en" id="fc-example-en">"Example sentence"</p>
+                    <p class="example-vi" id="fc-example-vi">(Ví dụ tiếng Việt)</p>
+                  </div>
+
+                  <!-- Pronunciation Tester -->
+                  <div class="speaking-practice-box">
+                    <span class="speech-status" id="fc-speech-status">Kiểm tra phát âm giọng nói qua micro</span>
+                    <button class="mic-btn" id="fc-mic-btn">
+                      <i class="fa-solid fa-microphone"></i> Luyện Nói
+                    </button>
+                  </div>
+                </div>
+
+                <div class="card-hint">
+                  <i class="fa-solid fa-rotate-left"></i>
+                  <span>Nhấn để lật lại mặt trước</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SM-2 Rating Controls -->
+          <div class="rating-bar" id="rating-bar">
+            <button class="rating-btn again" data-quality="1">
+              <i class="fa-solid fa-xmark"></i>
+              Quên hẳn
+              <span>Lặp lại hôm nay</span>
+            </button>
+            <button class="rating-btn hard" data-quality="3">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              Nhớ khó khăn
+              <span>+1 ngày</span>
+            </button>
+            <button class="rating-btn good" data-quality="4">
+              <i class="fa-solid fa-check"></i>
+              Nhớ tốt
+              <span>+3 đến 6 ngày</span>
+            </button>
+            <button class="rating-btn easy" data-quality="5">
+              <i class="fa-solid fa-star"></i>
+              Rất dễ
+              <span>Thuần thục</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: GRAMMAR QUIZ -->
+      <section id="view-quiz" class="view-section">
+        <div class="quiz-wrapper">
+          <!-- Topic Selector -->
+          <div class="quiz-topic-nav">
+            <button class="chip-btn active" data-topic="all">Tất cả chủ đề</button>
+            <button class="chip-btn" data-topic="Tenses">Thì tiếng Anh (Tenses)</button>
+            <button class="chip-btn" data-topic="Conditionals">Câu điều kiện</button>
+            <button class="chip-btn" data-topic="Passive Voice">Câu bị động</button>
+            <button class="chip-btn" data-topic="Prepositions">Giới từ</button>
+            <button class="chip-btn" data-topic="Phrasal Verbs">Cụm động từ</button>
+            <button class="chip-btn" data-topic="Relative Clauses">Mệnh đề quan hệ</button>
+          </div>
+
+          <!-- Quiz Question Card -->
+          <div class="glass-panel quiz-card">
+            <div class="quiz-header">
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span class="badge-tag" id="quiz-topic-badge">Tenses</span>
+                <span class="badge-level" id="quiz-diff-badge">Intermediate</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="audio-btn" id="quiz-audio-btn" title="Nghe câu hỏi">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <span style="font-size:0.85rem; color: var(--text-muted);" id="quiz-counter">Câu 1 / 8</span>
+              </div>
+            </div>
+
+            <h3 class="quiz-question-text" id="quiz-question">Đang tải câu hỏi trắc nghiệm...</h3>
+
+            <div class="quiz-options" id="quiz-options">
+              <!-- Options populated by JS -->
+            </div>
+
+            <!-- Explanation Box -->
+            <div class="explanation-box" id="quiz-explanation" style="display: none;">
+              <h4 id="quiz-exp-title"><i class="fa-solid fa-circle-check"></i> Giải thích chi tiết</h4>
+              <p id="quiz-exp-text">Nội dung giải thích...</p>
+              <div class="rule-pill" id="quiz-rule-text">Tóm tắt quy tắc ngữ pháp</div>
+            </div>
+
+            <div class="quiz-footer-actions" style="margin-top: 20px;">
+              <button class="btn-primary" id="quiz-next-btn" style="display: none;">
+                Câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: AI ENGLISH COACH -->
+      <section id="view-tutor" class="view-section">
+        <div class="glass-panel tutor-layout">
+          <!-- Scenarios Sidebar -->
+          <div class="scenario-list">
+            <h4 style="font-size:0.9rem; color:var(--text-muted); margin-bottom: 6px; text-transform:uppercase;">Tình huống đàm thoại</h4>
+            
+            <div class="scenario-item active" data-scenario="daily_talk">
+              <h4>☕ Daily Small Talk</h4>
+              <p>Tâm sự, trò chuyện đời thường với bạn bè</p>
+            </div>
+
+            <div class="scenario-item" data-scenario="job_interview">
+              <h4>💼 Phỏng Vấn Xin Việc</h4>
+              <p>Thực hành trả lời câu hỏi nhà tuyển dụng</p>
+            </div>
+
+            <div class="scenario-item" data-scenario="workplace">
+              <h4>💻 Giao Tiếp Công Sở</h4>
+              <p>Họp nhóm, thảo luận công việc với đồng nghiệp</p>
+            </div>
+
+            <div class="scenario-item" data-scenario="travel">
+              <h4>✈️ Du Lịch & Sân Bay</h4>
+              <p>Làm thủ tục bay, đặt phòng khách sạn, hỏi đường</p>
+            </div>
+
+            <div class="scenario-item" data-scenario="free_chat">
+              <h4>✨ Cố Vấn Tự Do (Mentor)</h4>
+              <p>Đặt câu hỏi ngữ pháp hoặc tâm sự bất kỳ</p>
+            </div>
+          </div>
+
+          <!-- Chat Conversation Area -->
+          <div class="chat-container">
+            <div class="chat-header">
+              <div>
+                <h3 style="font-size: 1.1rem; font-weight: 700;" id="coach-role-title">Emma (English Speaking Friend)</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">AI Coach hỗ trợ phản hồi & sửa lỗi ngữ pháp tức thì</p>
+              </div>
+              <div class="coach-status">
+                <span class="status-dot"></span> Đang trực tuyến
+              </div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+              <!-- Messages rendered by JS -->
+            </div>
+
+            <div class="chat-input-bar">
+              <button class="audio-btn mic-btn" id="chat-mic-btn" style="width: 44px; height: 44px; border-radius: 50%;" title="Nói qua Micro">
+                <i class="fa-solid fa-microphone"></i>
+              </button>
+              <input type="text" class="chat-input" id="chat-input" placeholder="Nhập tin nhắn tiếng Anh của bạn hoặc bấm Micro...">
+              <button class="btn-primary" id="chat-send-btn">
+                Gửi <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: PROGRESS & XP DASHBOARD -->
+      <section id="view-dashboard" class="view-section">
+        <div class="dashboard-grid">
+          <div class="glass-panel dash-card">
+            <div class="dash-icon xp-icon">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="dash-info">
+              <h3 id="dash-xp">0 XP</h3>
+              <p>Tổng điểm kinh nghiệm tích lũy</p>
+            </div>
+          </div>
+
+          <div class="glass-panel dash-card">
+            <div class="dash-icon vocab-icon">
+              <i class="fa-solid fa-spell-check"></i>
+            </div>
+            <div class="dash-info">
+              <h3 id="dash-mastered">0 / 0</h3>
+              <p>Từ vựng đã hoàn toàn làm chủ</p>
+            </div>
+          </div>
+
+          <div class="glass-panel dash-card">
+            <div class="dash-icon quiz-icon">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <div class="dash-info">
+              <h3 id="dash-accuracy">0%</h3>
+              <p>Độ chính xác trắc nghiệm ngữ pháp</p>
+            </div>
+          </div>
+
+          <div class="glass-panel dash-card">
+            <div class="dash-icon rank-icon">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <div class="dash-info">
+              <h3 id="dash-rank" style="font-size: 1.15rem;">Học Viên Mới</h3>
+              <p>Cấp bậc người học hiện tại</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 8px;">
+            <i class="fa-solid fa-clock-rotate-left"></i> Lịch Sử Học Tập Gần Đây
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px;">
+            Nhật ký ghi nhận tiến trình ôn luyện từ vựng, trắc nghiệm và đàm thoại
+          </p>
+
+          <table class="recent-history-table">
+            <thead>
+              <tr>
+                <th>Hoạt động</th>
+                <th>Chi tiết</th>
+                <th>XP nhận</th>
+                <th>Thời gian</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody">
+              <!-- History rows -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/static/js/speech.js"></script>
+  <script src="/static/js/flashcards.js"></script>
+  <script src="/static/js/quiz.js"></script>
+  <script src="/static/js/tutor.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
