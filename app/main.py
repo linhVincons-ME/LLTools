@@ -325,37 +325,119 @@ def serve_index():
 
 
 import time
+import os
+import socket
+import subprocess
 import urllib.request
 
 
+def find_available_port(host: str, start_port: int = 8000) -> int:
+    """Find an open port to avoid Errno 10048 address already in use."""
+    for port in range(start_port, start_port + 25):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind((host, port))
+                return port
+            except OSError:
+                continue
+    return start_port
+
+
 def run_server(host: str, port: int):
-    """Run uvicorn server in a separate thread."""
+    """Run uvicorn server in a separate daemon thread."""
     uvicorn.run("app.main:app", host=host, port=port, log_level="warning")
+
+
+def launch_desktop_window(url: str):
+    """
+    Launch LLTools in a dedicated, native Desktop Application Window.
+    Uses Edge/Chrome standalone App Mode or pywebview.
+    """
+    browser_candidates = [
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+        r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+        os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Edge\Application\msedge.exe"),
+        os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"),
+    ]
+
+    chosen_browser = None
+    for path in browser_candidates:
+        if os.path.isfile(path):
+            chosen_browser = path
+            break
+
+    if chosen_browser:
+        print("🖥️  Đang mở cửa sổ ứng dụng Desktop LLTools...")
+        try:
+            proc = subprocess.Popen([
+                chosen_browser,
+                f"--app={url}",
+                "--window-size=1340,890",
+                "--app-auto-launched"
+            ])
+            proc.wait()
+            print("👋 Ứng dụng LLTools Desktop đã đóng.")
+            return True
+        except Exception as e:
+            print(f"[*] Thử phương thức tiếp theo: {e}")
+
+    # Fallback to pywebview
+    try:
+        import webview
+        print("🖥️  Khởi chạy qua pywebview...")
+        window = webview.create_window(
+            title="LLTools - English Learning & 4-Skills Mastery Suite",
+            url=url,
+            width=1340,
+            height=890,
+            min_size=(960, 640),
+            text_select=True
+        )
+        webview.start(debug=False)
+        print("👋 Ứng dụng LLTools Desktop đã đóng.")
+        return True
+    except Exception:
+        pass
+
+    # Fallback to default browser
+    print("🌐 Mở ứng dụng trên trình duyệt mặc định...")
+    webbrowser.open(url)
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        pass
+    return False
 
 
 def main():
     parser = argparse.ArgumentParser(description="Khởi chạy ứng dụng LLTools Desktop Application")
     parser.add_argument("--host", default=HOST, help="Host để bind web server")
-    parser.add_argument("--port", type=int, default=PORT, help="Cổng chạy web server")
-    parser.add_argument("--web", action="store_true", help="Chạy ở chế độ trình duyệt Web thay vì Desktop App")
+    parser.add_argument("--port", type=int, default=None, help="Cổng chạy web server")
+    parser.add_argument("--web", action="store_true", help="Chạy ở chế độ trình duyệt Web thông thường")
     parser.add_argument("--no-browser", action="store_true", help="Không tự động mở trình duyệt (chỉ dùng với --web)")
     args = parser.parse_args()
 
-    url = f"http://{args.host}:{args.port}"
+    # Automatically find an available port if none specified
+    actual_port = args.port if args.port else find_available_port(args.host, PORT)
+    url = f"http://{args.host}:{actual_port}"
+
     print("=" * 60)
     print("🚀 LLTools - English Learning & 4-Skills Suite")
     print(f"🌐 Backend Service: {url}")
     print("=" * 60)
 
     if args.web:
-        # Standard web browser mode
+        # Standard browser mode
         if not args.no_browser:
             open_browser_delayed(url)
-        uvicorn.run("app.main:app", host=args.host, port=args.port, reload=False)
+        uvicorn.run("app.main:app", host=args.host, port=actual_port, reload=False)
         return
 
     # Start FastAPI server in a background daemon thread
-    server_thread = threading.Thread(target=run_server, args=(args.host, args.port), daemon=True)
+    server_thread = threading.Thread(target=run_server, args=(args.host, actual_port), daemon=True)
     server_thread.start()
 
     # Wait for server to become responsive
@@ -376,25 +458,8 @@ def main():
         webbrowser.open(url)
         return
 
-    # Launch native Desktop Window with pywebview
-    try:
-        import webview
-        print("🖥️ Đang mở cửa sổ ứng dụng Desktop LLTools...")
-        window = webview.create_window(
-            title="LLTools - English Learning & 4-Skills Mastery Suite",
-            url=url,
-            width=1340,
-            height=890,
-            min_size=(960, 640),
-            text_select=True,
-            confirm_close=False
-        )
-        webview.start(debug=False)
-        print("👋 Ứng dụng LLTools Desktop đã đóng.")
-    except Exception as err:
-        print(f"⚠️ Không thể khởi tạo pywebview ({err}), chuyển sang mở trình duyệt mặc định...")
-        webbrowser.open(url)
-        server_thread.join()
+    # Launch Desktop Application
+    launch_desktop_window(url)
 
 
 if __name__ == "__main__":
